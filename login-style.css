@@ -1,0 +1,82 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto";
+    background-color: rgb(3, 20, 37);
+}
+
+.logintext{
+    display: flex;
+}
+
+.text{
+    margin-top: 40vh;
+    margin-left: 20%;
+    line-height: 10vh;
+    flex: 1;
+}
+
+.text h1{
+    font-size: 70px;
+    color: #fff;
+    font-weight: 500;
+    }
+
+.text p{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.text p a{
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.box{
+    margin-top: 33vh;
+    flex: 1;
+    margin-left: -5%;
+}
+
+.form{
+    background: transparent;
+    color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+}
+
+input{
+    margin: 20px 0;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+.username, .password{
+    border-bottom: 1px solid #fff;
+}
+
+.button{
+    width: 100%;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 0;
+    background: transparent;
+    color: #fff;
+}
+
+.button:hover{
+    background: #fff;
+    color: #000;
+}
+

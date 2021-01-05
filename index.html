@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="mainPage.css">
+    <title>unfakely</title>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50" id="body" class="centered-nav index-light">
+    <header>
+        <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 fixed-top">
+            <a href="#" class="navbar-brand">Home</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navLinks">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="" class="nav-link" id="dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Login.html" class="nav-link" id="profileLogIn">Log In</a>
+                    </li>
+                </li>
+                <li class="nav-item">
+                    <a href="Signup.html" class="nav-link" id="profileSignUp">Sign Up</a>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" id="search" placeholder="Search" aria-label="Search">
+                  </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container-fluid px-0">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div id="headingGroup" class="text-white text-center d-none d-lg-block mt-5">
+                        <h1 class="">Welcome<span>/</span>to<span>/</span>Unfakely</h1>
+                    </div>
+
+                   <p><div class="Intro Text">Welcome to unfakely. As Fakenews become more and more present, our goal is to
+                        create a platform where you can vote news media you consume by three relevant criteria.
+                  </p>
+                        <ul>
+                            <li>Objective versus Emotional</li>
+                            <li>Clickbate vs (...)</li>
+                            <li>Reliable versus Unreliable</li>
+                        </ul>
+                    </div>
+                    <p> After you complete your search, you can open and read the article/ view the video. After consuming that specific
+                        News Media, we kindly ask you to rate this according to the three criteria. <b>Thank you for making a contribution</b>
+                        </p>
+                    </div>
+            </div>
+        </section>
+
+        <section class="container-fluid px-0">
+
+                <div class="row align-items-center content">
+
+                        <div class="col-md-6 order-3 order-md-1">
+                            <h2> Here comes the Unfakelymeter.</h2>
+                            You can vote here:
+                            <img src="" alt="" class="img-fluid">
+                        </div>
+                </div>
+
+            <div class="row align-items-center content">
+                <div class="col-md-12 text-center order-2 order-md-2">
+                    <div class="row justify-content-center">
+                        <h2>Topic</h2>
+                        <form class="search" action="">
+                            <label for="searchTopic"> </label>
+                            <input class="input" id="topicSearch" placeholder="Write a topic"></br>
+                            <input type="submit" class="button" value="Search" />
+                        </form>
+                                                
+                    </div>
+                    <div class="container">
+                        <ul class="news-list">
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Java Script comes here -> This will be the actual work :) -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    </main>
+
+
+        <footer>
+            <a href="">Impressum</a>
+            <a href="">Contact</a>
+    </footer>
+    <!--We need some JS here. The current score concerning the 3 criteria 
+                should  be shown here. -->
+    <script>
+        const searchFrom = document.querySelector(".search");
+        const input = document.querySelector(".input")
+        const newsList = document.querySelector(".news-list")
+        searchFrom.addEventListener("submit", retrieve)
+        function retrieve(e){
+            e.preventDefault()
+            newsList.innerHTML = '';
+
+            const apiKey =''
+            let topic = input.value;
+            const proxyurl = "https://cors-anywhere.herokuapp.com/";
+            let url = `http://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`;
+            
+            fetch(proxyurl + url).then((res)=>{
+                return res.json()
+            }).then((data)=>{
+                console.log(data)
+                newsList.clear
+                data.articles.forEach(article => {
+                    let li=document.createElement('li');
+                    let newsContainer = document.createElement('div');
+
+                    let title = document.createElement('p');
+                    title.textContent = article.title;
+
+                    let content = document.createElement('p');
+                    content.textContent = article.description;
+
+                    let a=document.createElement('a');
+                    a.setAttribute('href', article.url);
+                    a.setAttribute('target', '_blank');
+                    a.textContent = 'Read More';
+
+                    let img = document.createElement('img');
+                    img.setAttribute('src', article.urlToImage);
+                    img.setAttribute('width', '20%');
+                    img.setAttribute('height', '20%');
+
+                    newsContainer.appendChild(title);
+                    newsContainer.appendChild(content);
+                    newsContainer.appendChild(a);
+                    newsContainer.appendChild(img);
+
+                    li.appendChild(newsContainer);
+                    newsList.appendChild(li);
+                })
+            
+            })
+        }
+    </script>
+</body>
+</html>
