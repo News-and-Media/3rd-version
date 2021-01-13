@@ -115,7 +115,7 @@
             const apiKey =''
             let topic = input.value;
             const proxyurl = "https://cors-anywhere.herokuapp.com/";
-            let url = `http://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`;
+            let url = `http://newsapi.org/v2/top-headlines?q=${topic}&apiKey=${apiKey}&language=en`;
             
             fetch(proxyurl + url).then((res)=>{
                 return res.json()
